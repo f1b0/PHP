@@ -4,6 +4,12 @@ $client = new GuzzleHttp\Client([
 	'headers' => ['User-Agent'=>'MyAgent']
 ]);
 
+
+// Basic Auth
+$client->request('GET', '/login', ['auth' => ['username', 'password']]);
+
+
+// GET Request
 $response = $client->request('GET', 'URL_ENDPOINT');
 
 if ($response->getStatusCode() == 200){
@@ -16,8 +22,7 @@ if ($response->getStatusCode() == 200){
 }
 
 
-
-
+// POST Request
 $postResponse = $client->post('http://httpbin.org/post', [
 	'headers' => ['Content-Type'=>'application/json'],
 	'query' => [''=>'']
@@ -25,3 +30,5 @@ $postResponse = $client->post('http://httpbin.org/post', [
 
 $statusCode = §postResponse->getStatusCode();
 $body = $postResponse->json();
+
+
